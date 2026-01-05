@@ -5,99 +5,191 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MTRL Outdoor Gear</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0f0f0f;
-      color: #f5f5f5;
-    }
-    header {
-      padding: 60px 20px;
-      text-align: center;
-      background: linear-gradient(180deg, #111, #000);
-    }
-    header h1 {
-      font-size: 42px;
-      letter-spacing: 4px;
-      margin-bottom: 10px;
-    }
-    header p {
-      color: #bbb;
-      max-width: 600px;
-      margin: auto;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 14px 26px;
-      background: #25D366;
-      color: #000;
-      text-decoration: none;
-      font-weight: bold;
-      border-radius: 6px;
-    }
-    section {
-      padding: 50px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-    h2 {
-      text-align: center;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-    }
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-    .product {
-      background: #161616;
-      border-radius: 10px;
-      padding: 20px;
-    }
-    .product img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    .product h3 {
-      margin: 15px 0 5px;
-    }
-    .product p {
-      font-size: 14px;
-      color: #ccc;
-    }
-    .price {
-      margin: 10px 0;
-      font-weight: bold;
-    }
-    .actions a {
-      display: block;
-      text-align: center;
-      margin-top: 10px;
-      padding: 10px;
-      border-radius: 5px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .wa {
-      background: #25D366;
-      color: #000;
-    }
-    .mp {
-      background: #333;
-      color: #fff;
-    }
-    footer {
-      background: #000;
-      padding: 30px 20px;
-      text-align: center;
-      font-size: 14px;
-      color: #777;
-    }
+:root {
+  --bg: #0b0d0c;
+  --card: #141716;
+  --text: #f2f2f2;
+  --muted: #9a9a9a;
+  --accent: #6aff8f;
+  --border: #1f2422;
+}
+
+body.light {
+  --bg: #f5f5f5;
+  --card: #ffffff;
+  --text: #111;
+  --muted: #555;
+  --accent: #1f7a3f;
+  --border: #ddd;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+header {
+  padding: 70px 20px 60px;
+  text-align: center;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.85), var(--bg)),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03),
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 6px
+    );
+}
+
+header h1 {
+  font-size: 36px;
+  letter-spacing: 5px;
+}
+
+header p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 10px auto 0;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 28px;
+  padding: 14px 28px;
+  background: var(--accent);
+  color: #000;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.4);
+}
+
+.toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+section {
+  padding: 40px 16px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+h2 {
+  text-align: center;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.product:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.5);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 8px;
+  transition: transform .4s ease;
+}
+
+.product:hover img {
+  transform: scale(1.05);
+}
+
+.product h3 {
+  margin: 14px 0 6px;
+}
+
+.product p {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.price {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.actions a {
+  display: block;
+  margin-top: 8px;
+  padding: 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.actions a:hover {
+  transform: scale(0.97);
+  opacity: .9;
+}
+
+.wa {
+  background: var(--accent);
+  color: #000;
+}
+
+.mp {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+footer {
+  background: #000;
+  padding: 30px 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+}
   </style>
 </head>
 <body>
+<button class="toggle" onclick="toggleMode()">MODE</button>
 
 <header>
   <h1>MTRL STORE</h1>
@@ -168,8 +260,21 @@
   © 2026 MTRL Outdoor Gear<br>
   Instagram • WhatsApp • Marketplace
 </footer>
+<script>
+function toggleMode() {
+  document.body.classList.toggle("light");
+  localStorage.setItem("mode",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+}
+
+if (localStorage.getItem("mode") === "light") {
+  document.body.classList.add("light");
+}
+</script>
 
 </body>
 </html>
+
 
 
