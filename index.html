@@ -186,6 +186,66 @@ footer {
   font-size: 13px;
   color: #777;
 }
+    /* ===== MICRO INTERACTION ===== */
+.product::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  margin-top: 14px;
+  transition: width .4s ease;
+}
+
+.product:hover::after {
+  width: 100%;
+}
+
+/* ===== TACTICAL TEXT EFFECT ===== */
+h2::before {
+  content: "■ ";
+  color: var(--accent);
+}
+
+/* ===== BUTTON PRESS FEEL ===== */
+.actions a:active {
+  transform: scale(0.95);
+}
+
+/* ===== IMAGE SHADOW DEPTH ===== */
+.product img {
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+/* ===== HEADER DIVIDER ===== */
+header::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 30px auto 0;
+}
+
+/* ===== SUBTLE NOISE EFFECT ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+}
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all .8s ease;
+}
+.fade.show {
+  opacity: 1;
+  transform: none;
+}
+
   </style>
 </head>
 <body>
@@ -206,7 +266,7 @@ footer {
   <div class="products">
 
     <!-- PRODUK 1 -->
-    <div class="product">
+    <div class="product fade">
       <img src="images/45L.jpg" alt="MTRL Carrier 45L">
       <h3>MTRL Carrier 45L</h3>
       <p>Tas carrier outdoor kapasitas besar, kuat untuk pendakian multi-day.</p>
@@ -222,7 +282,7 @@ footer {
     </div>
 
     <!-- PRODUK 2 -->
-    <div class="product">
+    <div class="product fade">
       <img src="images/sld.jpg" alt="MTRL Clutch Bag 5L">
       <h3>MTRL Clutch Bag 5L</h3>
       <p>Ringan, ergonomis, cocok untuk outdoor ringan & daily use.</p>
@@ -238,8 +298,8 @@ footer {
     </div>
 
     <!-- PRODUK 3 -->
-    <div class="product">
-      <img src="images/hydropack.jpeg"alt="MTRL Hydropack">
+    <div class="product fade">
+      <img src="images/hydropack.jpeg" alt="MTRL Hydropack">
       <h3>MTRL Hydropack</h3>
       <p>Hydropack minimalis untuk trail run & aktivitas cepat.</p>
       <div class="price">Rp 125.000</div>
@@ -263,7 +323,8 @@ footer {
 <script>
 function toggleMode() {
   document.body.classList.toggle("light");
-  localStorage.setItem("mode",
+  localStorage.setItem(
+    "mode",
     document.body.classList.contains("light") ? "light" : "dark"
   );
 }
@@ -271,10 +332,26 @@ function toggleMode() {
 if (localStorage.getItem("mode") === "light") {
   document.body.classList.add("light");
 }
+
+/* Fade-in animation */
+const faders = document.querySelectorAll('.fade');
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      obs.unobserve(e.target);
+    }
+  });
+});
+
+faders.forEach(f => obs.observe(f));
 </script>
+
 
 </body>
 </html>
+
 
 
 
