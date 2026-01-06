@@ -259,6 +259,27 @@ body::before {
   border-radius: 4px;
   color: var(--accent);
 }
+    /* ===== IMAGE SLIDER ===== */
+.slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
+}
+
+.slider img {
+  flex-shrink: 0;
+  width: 260px;
+  max-width: 100%;
+  border-radius: 8px;
+  scroll-snap-align: center;
+}
+
 
   </style>
 </head>
@@ -281,7 +302,20 @@ body::before {
 
     <!-- PRODUK 1 -->
     <div class="product fade">
-      <img src="images/45L.jpg" alt="MTRL Carrier 45L">
+      <div class="slider">
+  <img src="images/45L-1.jpg">
+  <img src="images/45L-2.jpg">
+  <img src="images/45L-3.jpg">
+  <img src="images/45L-4.jpg">
+  <img src="images/45L-5.png">
+</div>
+
+<div class="badges">
+  <span>600D</span>
+  <span>WATER RESIST</span>
+  <span>BAR-TACK</span>
+  <span>AirFlow Backsystem</span>
+</div>
       <h3>MTRL Carrier 45L</h3>
       <p>Tas carrier outdoor kapasitas besar, kuat untuk pendakian multi-day.</p>
       <div class="price">Rp 399.000</div>
@@ -313,12 +347,23 @@ body::before {
 
     <!-- PRODUK 3 -->
     <div class="product fade">
-      <img src="images/hydropack.jpeg" alt="MTRL Hydropack">
-      <div class="badges">
+     <div class="slider">
+  <img src="images/HYDRO-1.jpeg">
+  <img src="images/HYDRO-2.jpeg">
+  <img src="images/HYDRO-3.jpeg">
+  <img src="images/HYDRO-4.jpeg">
+  <img src="images/HYDRO-5.jpeg">
+  <img src="images/HYDRO-6.jpeg">
+  <img src="images/HYDRO-7.jpeg">
+  <img src="images/HYDRO-8.jpeg">
+</div>
+
+<div class="badges">
   <span>600D</span>
   <span>WATER RESIST</span>
   <span>BAR-TACK</span>
 </div>
+
       <h3>MTRL Hydropack</h3>
       <p>Hydropack minimalis untuk trail run & aktivitas cepat.</p>
       <div class="price">Rp 125.000</div>
@@ -370,6 +415,7 @@ faders.forEach(f => obs.observe(f));
 
 </body>
 </html>
+
 
 
 
